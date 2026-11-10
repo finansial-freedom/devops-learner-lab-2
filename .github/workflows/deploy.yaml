@@ -148,10 +148,9 @@ jobs:
             aws amplify start-deployment \
               --app-id ${APP_ID} \
               --branch-name main \
-              --job-id ${DEPLOYMENT_ID} \
               --source-url "s3://${BUCKET}/${S3_KEY}" \
               --region ${AWS_REGION} \
-              --source-url-type BUCKET_PREFIX
+              --source-url-type ZIP
 
             echo "Frontend deployment started: ${DEPLOYMENT_ID}"
 
