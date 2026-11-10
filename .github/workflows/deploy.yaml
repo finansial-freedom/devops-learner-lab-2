@@ -118,7 +118,7 @@ jobs:
       # ----------------------------------------------------------------
       # Deploy frontend to Amplify
       # ----------------------------------------------------------------
-      - name: Deploy frontend to Amplify
+      - name: upload to s3
         run: |
           # Find Amplify app by name
           APP_ID=$(aws amplify list-apps --region ${AWS_REGION} \
@@ -138,6 +138,17 @@ jobs:
 
             # Upload to S3 and start deployment
             aws s3 cp frontend.zip "s3://${BUCKET}/${S3_KEY}" --region ${AWS_REGION}
+
+      - name: Deploy frontend to Amplify
+        run: |
+          # Find Amplify app by name
+          APP_ID=$(aws amplify list-apps --region ${AWS_REGION} \
+            --query "apps[?name=='${PREFIX}-frontend'].appId" --output text)
+
+          if [ -z "$APP_ID" ] || [ "$APP_ID" == "None" ]; then
+            echo "Amplify app ${PREFIX}-frontend not found, skipping frontend deployment"
+          else
+            echo "Deploying to Amplify app: ${APP_ID}"
 
             DEPLOYMENT_ID=$(aws amplify create-deployment \
               --app-id ${APP_ID} \
