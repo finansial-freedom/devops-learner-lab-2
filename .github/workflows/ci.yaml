@@ -40,35 +40,35 @@ jobs:
         run: flake8 lambda/websocket-api/app.py --max-line-length=120 --ignore=E501,W503
 
       - name: Build Docker image - user-api
-        run: docker build -t devops/user-api:test lambda/user-api/
+        run: docker buildx build --platform linux/amd64 --provenance=false -t devops/user-api:test lambda/user-api/
 
       - name: Build Docker image - order-api
-        run: docker build -t devops/order-api:test lambda/order-api/
+        run: docker buildx build --platform linux/amd64 --provenance=false -t devops/order-api:test lambda/order-api/
 
       - name: Build Docker image - notification-worker
-        run: docker build -t devops/notif-worker:test lambda/notification-worker/
+        run: docker buildx build --platform linux/amd64 --provenance=false -t devops/notif-worker:test lambda/notification-worker/
 
       - name: Build Docker image - websocket-api
-        run: docker build -t devops/websocket-api:test lambda/websocket-api/
+        run: docker buildx build --platform linux/amd64 --provenance=false -t devops/websocket-api:test lambda/websocket-api/
 
       - name: Test Lambda handler imports - user-api
         run: |
-          docker run --rm devops/user-api:test \
+          docker run --rm --entrypoint "" devops/user-api:test \
             python -c "import app; print('user-api handler OK')"
 
       - name: Test Lambda handler imports - order-api
         run: |
-          docker run --rm devops/order-api:test \
+          docker run --rm --entrypoint "" devops/order-api:test \
             python -c "import app; print('order-api handler OK')"
 
       - name: Test Lambda handler imports - notification-worker
         run: |
-          docker run --rm devops/notif-worker:test \
+          docker run --rm --entrypoint "" devops/notif-worker:test \
             python -c "import app; print('notification-worker handler OK')"
 
       - name: Test Lambda handler imports - websocket-api
         run: |
-          docker run --rm devops/websocket-api:test \
+          docker run --rm --entrypoint "" devops/websocket-api:test \
             python -c "import app; print('websocket-api handler OK')"
 
       - name: Verify frontend
