@@ -151,6 +151,7 @@ jobs:
               --job-id ${DEPLOYMENT_ID} \
               --source-url "s3://${BUCKET}/${S3_KEY}" \
               --region ${AWS_REGION}
+              --source-url-type BUCKET_PREFIX
 
             echo "Frontend deployment started: ${DEPLOYMENT_ID}"
 
