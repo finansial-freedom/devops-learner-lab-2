@@ -270,7 +270,7 @@ def lambda_handler(event, context):
     try:
         conn = get_db_connection()
 
-        user_id = path_params.get("id")
+        user_id = path_params.get("proxy")
 
         if http_method == "GET" and user_id is None:
             return list_users(conn, query_params)

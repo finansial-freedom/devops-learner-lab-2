@@ -456,7 +456,7 @@ def lambda_handler(event, context):
         conn = get_db_connection()
 
         if is_products_route:
-            product_id = path_params.get("id")
+            product_id = path_params.get("proxy")
             if http_method == "GET" and product_id is None:
                 return list_products(conn, query_params)
             elif http_method == "GET" and product_id:
@@ -464,7 +464,7 @@ def lambda_handler(event, context):
             else:
                 return response(405, {"error": f"Method {http_method} not allowed on {path}"})
 
-        order_id = path_params.get("id")
+        order_id = path_params.get("proxy")
 
         if http_method == "GET" and order_id is None:
             return list_orders(conn, query_params)
