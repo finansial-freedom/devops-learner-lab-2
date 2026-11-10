@@ -38,25 +38,25 @@ jobs:
       # ----------------------------------------------------------------
       - name: Build Docker image - user-api
         run: |
-          docker build -t ${ECR_REGISTRY}/${PREFIX}/user-api:latest \
+          docker buildx build --platform linux/amd64 --provenance=false -t ${ECR_REGISTRY}/${PREFIX}/user-api:latest \
                        -t ${ECR_REGISTRY}/${PREFIX}/user-api:${GITHUB_SHA::8} \
                        lambda/user-api/
 
       - name: Build Docker image - order-api
         run: |
-          docker build -t ${ECR_REGISTRY}/${PREFIX}/order-api:latest \
+          docker buildx build --platform linux/amd64 --provenance=false -t ${ECR_REGISTRY}/${PREFIX}/order-api:latest \
                        -t ${ECR_REGISTRY}/${PREFIX}/order-api:${GITHUB_SHA::8} \
                        lambda/order-api/
 
       - name: Build Docker image - notification-worker
         run: |
-          docker build -t ${ECR_REGISTRY}/${PREFIX}/notif-worker:latest \
+          docker buildx build --platform linux/amd64 --provenance=false -t ${ECR_REGISTRY}/${PREFIX}/notif-worker:latest \
                        -t ${ECR_REGISTRY}/${PREFIX}/notif-worker:${GITHUB_SHA::8} \
                        lambda/notification-worker/
 
       - name: Build Docker image - websocket-api
         run: |
-          docker build -t ${ECR_REGISTRY}/${PREFIX}/websocket-api:latest \
+          docker buildx build --platform linux/amd64 --provenance=false -t ${ECR_REGISTRY}/${PREFIX}/websocket-api:latest \
                        -t ${ECR_REGISTRY}/${PREFIX}/websocket-api:${GITHUB_SHA::8} \
                        lambda/websocket-api/
 
@@ -147,7 +147,7 @@ jobs:
             aws amplify start-deployment \
               --app-id ${APP_ID} \
               --branch-name main \
-              --deployment-id ${DEPLOYMENT_ID} \
+              --job-id ${DEPLOYMENT_ID} \
               --source-url "s3://${BUCKET}/${S3_KEY}" \
               --region ${AWS_REGION}
 
