@@ -51,6 +51,7 @@ jobs:
       - name: Build Docker image - websocket-api
         run: docker buildx build --platform linux/amd64 --provenance=false -t devops/websocket-api:test lambda/websocket-api/
 
+
       - name: Test Lambda handler imports - user-api
         run: |
           docker run --rm --entrypoint "" devops/user-api:test \
