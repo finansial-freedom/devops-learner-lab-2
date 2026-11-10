@@ -114,6 +114,7 @@ jobs:
             --image-uri ${ECR_REGISTRY}/${PREFIX}/websocket-api:latest \
             --region ${AWS_REGION}
 
+
       # ----------------------------------------------------------------
       # Deploy frontend to Amplify
       # ----------------------------------------------------------------
