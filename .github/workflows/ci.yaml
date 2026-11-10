@@ -55,6 +55,7 @@ jobs:
       - name: Test Lambda handler imports - user-api
         run: |
           docker run --rm --entrypoint "" devops/user-api:test \
+            python -c "import app; print('user-api handler OK')"
 
       - name: Test Lambda handler imports - order-api
         run: |
