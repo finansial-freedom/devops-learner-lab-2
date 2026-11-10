@@ -428,6 +428,7 @@ def delete_order(conn, order_id):
 
 def lambda_handler(event, context):
     """Main Lambda handler for Order API. Also serves the read-only Products catalog."""
+    print(json.dumps(event))
     http_method = (
         event.get("httpMethod")
         or event.get("requestContext", {}).get("http", {}).get("method", "GET")
