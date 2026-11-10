@@ -138,6 +138,7 @@ jobs:
 
             # Upload to S3 and start deployment
             aws s3 cp frontend.zip "s3://${BUCKET}/${S3_KEY}" --region ${AWS_REGION}
+          fi
 
       - name: Deploy frontend to Amplify
         run: |
