@@ -13,7 +13,6 @@ against RDS without needing SSH/SSM access to a runner instance.
 import json
 import logging
 import os
-import uuid
 
 import psycopg2
 from psycopg2.extras import RealDictCursor
