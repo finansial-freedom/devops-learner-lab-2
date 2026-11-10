@@ -57,7 +57,7 @@
                 HTTP API
             </span>
             <div class="form-control flex-1 min-w-[250px]">
-                <input type="text" id="apiUrl" placeholder="https://your-api-id.execute-api.us-west-2.amazonaws.com/prod"
+                <input type="text" id="apiUrl" placeholder="https://uc387i53wi.execute-api.us-west-2.amazonaws.com/prod"
                     class="input input-bordered input-sm w-full" />
             </div>
             <button onclick="saveApiUrl()" class="btn btn-primary btn-sm">Connect</button>
@@ -72,7 +72,7 @@
                 WebSocket
             </span>
             <div class="form-control flex-1 min-w-[250px]">
-                <input type="text" id="wsUrl" placeholder="wss://your-ws-id.execute-api.us-west-2.amazonaws.com/prod"
+                <input type="text" id="wsUrl" placeholder="wss://j6bjzwl2g8.execute-api.us-west-2.amazonaws.com/prod"
                     class="input input-bordered input-sm w-full" />
             </div>
             <button onclick="toggleWs()" id="wsToggleBtn" class="btn btn-primary btn-sm">Connect</button>
@@ -270,7 +270,7 @@
         // ==================== Cognito Auth ====================
         // Injected by deploy.sh at deploy time
         const COGNITO_DOMAIN = window.COGNITO_DOMAIN || "devops-auth.auth.us-west-2.amazoncognito.com";
-        const COGNITO_CLIENT_ID = window.COGNITO_CLIENT_ID || "c4i2ucnvpssvrof4ga5gth44o";
+        const COGNITO_CLIENT_ID = window.COGNITO_CLIENT_ID || "8cgffd34r0hrjlvoe5h6io09d";
         const COGNITO_REDIRECT_URI = window.COGNITO_REDIRECT_URI || window.location.origin + window.location.pathname;
 
         function getCognitoToken() {
